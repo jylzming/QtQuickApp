@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>B1首页-概况</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style=" background:#CCCCCC; min-width: 1000px;">
+<!-- Save for Web Slices (B1首页-概况.psd) -->
+<div id="left" style="float:left; width:72px; height:100%; background:#433F5B;"> 
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_1.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_2.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_3.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_4.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_5.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_6.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_7.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_8.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_9.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_10.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_11.jpg);cursor:hand;" > </div>
+	<div  style="float:left;width:72px;height:50px;background:url(home_left_12.jpg);cursor:hand;" > </div>
+		
+</div>
+
+
+<div id="left" style="width: calc(100% - 1000px); padding-left:calc((100% - 1000px)/2); height:650px; background:#CCCCCC;min-width: 1200px;"> 
+	<div id="name" style="width: 100%;background:#CCCCCC; padding-left:calc((100% - 1000px)/2); padding-top:180px; font-size:36px; height: 50px;"><B>监控中心 </B></div>
+	<div style="width:100%; height:200px; margin-left: calc((100% - 1000px)/2);margin-top: 20px;">
+		<div  style="float:left;width:407px;height:200px; margin-left:5px; ;background:url(home_19.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:200px;height:200px; margin-left:5px; background:url(home_21.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:200px;height:200px; margin-left:5px; background:url(home_23.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:200px;height:200px; margin-left:5px; background:url(home_25.jpg);cursor:hand;" > </div>
+	</div>
+	<div style="width:100%; height:200px; margin-left: calc((100% - 1000px)/2); margin-top:5px;">
+		<div  style="float:left;width:200px;height:200px;margin-left:5px;background:url(home_35.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:200px;height:200px;margin-left:5px;background:url(home_37.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:407px;height:200px;margin-left:5px;background:url(home_38.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:200px;height:200px;margin-left:5px;background:url(home_39.jpg);cursor:hand;" > </div>		
+	</div>
+	<div style="width:100%; height:200px; margin-left: calc((100% - 1000px)/2);margin-top:5px;">
+		<div  style="float:left;width:200px;height:200px;margin-left:5px; background:url(home_51.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:407px;height:200px;margin-left:5px; background:url(home_52.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:200px;height:200px;margin-left:5px; background:url(home_49.jpg);cursor:hand;" > </div>
+		<div  style="float:left;width:200px;height:200px;margin-left:5px; background:url(home_50.jpg);cursor:hand;" > </div>		
+	</div>
+</div>
+<!-- End Save for Web Slices -->
+</body>
+</html>

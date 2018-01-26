@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://portal.facebac.com/mediaindex/index.do -->
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <link rel="stylesheet" type="text/css" href="../CSS_files/config-manager.css" />  
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  
+ </head>
+ <script>
+ var nSelObj = null;
+
+ 
+function Init()
+{
+	var cNode =document.getElementById('OptHeader').getElementsByTagName('li');
+	var aObj = cNode[0];
+	var bObj = aObj.firstChild;
+	bObj.style.color="#FFFFFF"; 
+	bObj.style.backgroundColor = "#000000";
+}
+
+
+ function addRow(div, rowValue)
+{
+		var pli = document.createElement("li");
+		pli.className='list_cell part2';
+		var ptxt = document.createTextNode(rowValue);
+		pli.appendChild(ptxt);
+		div.appendChild(pli);
+}
+
+ function InitData()
+{
+		Init();
+
+		var listData = parent.jsCallVc("GetUserList");
+		//alert(listData);
+		var obj = eval('(' + listData + ')'); 
+	
+		for(i=0;i<obj.users.length;i++){ 
+			var pdiv = document.createElement("div"); 
+			pdiv.onclick = function(obj){
+				if(nSelObj != null)
+				{
+					ChangeRowBackgroud(nSelObj, 0);	
+				}
+				ChangeRowBackgroud(this, 1);
+				nSelObj = this;
+		   }
+	  		pdiv.className='data_list_header_sub';
+		  
+			addRow(pdiv, i);
+			addRow(pdiv, obj.users[i].name);
+			addRow(pdiv, obj.users[i].password);
+			addRow(pdiv, obj.users[i].level);
+			addRow(pdiv, "安全");
+
+		  
+			var testdiv = document.getElementById("data_list");
+			testdiv.appendChild(pdiv);
+		} 
+}
+
+
+
+
+function showAddDialog(type)
+{
+	 	if(type == 0)
+		{
+	 		document.getElementById("AddDailog").style.display="none";
+			return;
+		}
+		if(type == 1)
+		{
+			document.getElementById("name").disabled = false;
+			document.getElementById("name").value="";
+			document.getElementById("pass").value="";
+			document.getElementById("OptType").value ="添加";
+		}
+		if(type == 2)
+		{
+			if(nSelObj == null)
+			{
+				alert("请选一个需要修改的数据！");
+				return;
+			}
+			var childs  = nSelObj.childNodes; 
+			var nameObj = childs[1];
+			document.getElementById("name").disabled = true;
+			document.getElementById("name").value = nameObj.firstChild.nodeValue;
+			var passObj = childs[2];
+			document.getElementById("pass").value = passObj.firstChild.nodeValue;
+
+			document.getElementById("OptType").value ="修改";
+		}
+	 	
+		document.getElementById("AddDailog").style.display="";
+}
+
+function test1(obj){ 
+		return ;
+		var cNode =document.getElementById('OptHeader').getElementsByTagName('li');
+        for( var i=0; i<cNode.length; i++){
+			 var aObj = cNode[i];
+			 var bObj = aObj.firstChild;
+			 
+			 bObj.style.color = "#000000";
+			 bObj.style.backgroundColor = "#FFFFFF";	
+        }
+
+		var aObj = obj.firstChild;
+		aObj.style.color="#FFFFFF"; 
+		aObj.style.backgroundColor = "#000000";
+} 
+
+
+
+function AddStrategy()
+{ 
+	  
+	  //修改
+	  if(document.getElementById("OptType").value == "修改")
+	  {
+		 ChangeUserInfo();
+		 return;
+	  }
+
+		var name = document.getElementById("name").value;
+		var pass = document.getElementById("pass").value;
+
+		var nRet = ChangeUserIsExist(name);
+		if(nRet == 1)
+		{
+			alert("用户名已经存在");
+			return ;
+		}
+
+	  //添加
+	  var pdiv = document.createElement("div"); 
+	  pdiv.onclick = function(obj){
+		if(nSelObj != null)
+		{
+			ChangeRowBackgroud(nSelObj, 0);	
+		}
+		ChangeRowBackgroud(this, 1);
+		nSelObj = this;
+	  }
+	  pdiv.className='data_list_header_sub';
+	  
+		var testdiv = document.getElementById("data_list");
+		var index = testdiv.children.length + 1;
+
+
+		document.getElementById("name").value = "";
+		document.getElementById("pass").value = "";
+
+		addRow(pdiv, index);
+		addRow(pdiv, name);
+		addRow(pdiv, pass);
+		addRow(pdiv, "1");
+		addRow(pdiv, "安全");
+	
+	  testdiv.appendChild(pdiv);
+	  var param = name + "&" + pass;
+	  parent.jsCallVc2("AddUser", param);
+
+	
+}
+
+function ChangeRowBackgroud(obj, type)
+{
+	var color = "#000000";
+	var bk = "#AEAFB0";
+	if(type == 0)
+	{
+		color = "#000000";
+		bk ="#FFFFFF";
+	}
+
+	obj.style.backgroundColor = bk;
+	obj.style.color = color;
+
+	var childs = obj.childNodes; 
+	for(var i=0; i< childs.length; i++)
+	{
+		var objc = childs[i];
+		objc.style.backgroundColor = bk;
+		objc.style.color = color;
+	}
+}
+
+function ChangeUserInfo()
+{
+	if(nSelObj == null)
+		return;
+
+	var name = document.getElementById("name").value;
+	var pass = document.getElementById("pass").value;
+
+
+	var childs = nSelObj.childNodes; 
+	var nameObj = childs[1];
+	nameObj.firstChild.nodeValue = name;
+	var passObj = childs[2];
+	passObj.firstChild.nodeValue = pass;
+}
+
+function ChangeUserIsExist(name)
+{
+		var cNode = document.getElementById("data_list");
+		var childs = cNode.childNodes; 
+        for( var i=0; i<childs.length; i++){
+			var row = childs[i];
+			if(row.nodeType == 1) //nodeType==1时才使元素节点，2是属性节点，3是文本节点
+			{
+				 var cols = row.childNodes;
+				 var nameObj = cols[1];
+				 //alert(nameObj.firstChild.nodeValue);
+				 if(nameObj.firstChild.nodeValue == name)
+					return 1;
+			}
+		}
+
+		return 0;
+}
+
+function removeRow()
+{
+	if(nSelObj == null)
+		return ;
+	var cNode = document.getElementById("data_list");
+	cNode.removeChild(nSelObj);
+	nSelObj = null;
+}
+
+</script>
+ <body width="100%" style="background:#FFF;" onLoad="InitData()">
+
+  <div class="content_title" style="clear:both;z-index:1;">人员权限</div>
+  <div id="content" class="content_rect" style="z-index:2;"> <!-- data_area -->
+		  <div  class="header_type2">
+		     <ul id="OptHeader" class="nav_list">
+			  <li onclick="test1(this)"><a class="active1"  href="#" style="background:#000000;color:#FFFFFF">分组成员明细</a></li>
+		      <li onclick="test1(this)" ><a class="active1" href="#" style="background:#FFFFFF;color:#AAAAAA">路灯管理</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#" style="background:#FFFFFF;color:#AAAAAA">停车监管</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#" style="background:#FFFFFF;color:#AAAAAA">视频监控</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#" style="background:#FFFFFF;color:#AAAAAA">App执勤</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#" style="background:#FFFFFF;color:#AAAAAA">岗位记录</a></li>
+		     </ul>
+		  </div> 
+      <p class="data_celv_p">
+      	<span><input type="button" style="background:url(UserList.jpg);width:71px;height:18px;border:0;" name="OptCpy" /></span>
+      	<span><input type="button" style="background:url(addUser.jpg);width:71px;height:18px;border:0;"name="OptAdd" onclick="showAddDialog(1)" /></span>
+      	<span><input type="button" style="background:url(modifyUser.jpg);width:71px;height:18px;border:0;"name="OptMod" onclick="showAddDialog(2)" /></span>
+      	<span><input type="button" style="background:url(delUser.jpg);width:71px;height:18px;border:0;" name="OptDel" onclick="removeRow()"/></span>
+      	<span><input type="button" style="background:url(copy.jpg);width:71px;height:18px;border:0;" name="OptCpy" /></span>
+      </p> 
+      
+
+	    <div class="data_list">	   	  
+       	 		<div class="data_list_header">
+                 <li class="list_cell part1">索引</li>
+                 <li class="list_cell part1">用户名</li>
+                 <li class="list_cell part1">密码</li>
+                 <li class="list_cell part1">类型</li>
+                 <li class="list_cell part1">安全状态</li>
+            </div>
+	   	 </div>
+
+ 		<div id="data_list" class="data_list_sub"> 
+		</div>
+  </div><!-- data_area -->
+
+ 	<div id="AddDailog" style="display:none; POSITION:absolute; left:50%; top:50%; width:400px; height:200px; margin-left:-300px; margin-top:-200px; border:1px solid #888; background-color:#CCCCCC; text-align:center">
+		<div style="width:100%;height:30px; padding-top:10px; text-align:center;background-color:#215867; color:#CCCCCC">添加用户</div>
+		<div style="width:100%;height:270px;background-c15or:#CCCCCC; ">				
+				<br>&nbsp;&nbsp;&nbsp;&nbsp;用户名:&nbsp;<input id="name"/>
+				<br><br> &nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码:&nbsp;<input id="pass"/>
+				<br><br>
+				<input id="OptType" type="button" value="添加" onclick="AddStrategy()"/>&nbsp;&nbsp;&nbsp;
+				<input type="button" value="关闭" onclick="showAddDialog(0)"/>
+		</div>
+	</div> 
+	
+<script>
+
+</script>
+
+ </body>
+</html>
+
+   

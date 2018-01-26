@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://portal.facebac.com/mediaindex/index.do -->
+<html>
+ <head></head>
+ <body width="100%" style="background:#FFF" onLoad="FullList()">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <link rel="stylesheet" type="text/css" href="../CSS_files/config-manager.css" /> 
+ <div class="content_title" style="clear:both">人员权限</div>
+  <div id="content" class="content_rect">
+		  <div class="header_type2">
+		     <ul class="nav_list">
+		      <li onclick="test1(this)" ><a class="active1" href="#">路灯管理</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#">停车监管</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#">视频监控</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#">分组成员明细</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#">App执勤</a></li>
+		      <li onclick="test1(this)"><a class="active1"  href="#">岗位记录</a></li>
+		     </ul>
+		  </div> 
+      <p class="data_celv_p">
+      	<span>用户列表</span>
+      	<span><input type="button" name="email" value="添加" onclick="AddStrategy()" /></span>
+      	<span><input type="button" name="email" value="修改"/></span>
+      	<span><input type="button" name="email" value="删除"/></span>
+      	<span><input type="button" name="email" value="复制权限"/></span>
+      </p> 
+      
+
+	    <div class="data_list">	   	  
+       	 				<div class="data_list_header">
+                     <li class="list_cell part1">索引</li>
+                     <li class="list_cell part1">用户名</li>
+                     <li class="list_cell part1">类型</li>
+                     <li class="list_cell part1">安全状态</li>
+                </div>
+	   	 </div>
+	   	  <div id="data_list" class="data_list_sub">
+<!--	   	  	
+               <div class="data_list_header_sub">
+                     <li class="list_cell part2">编号</li>
+                     <li class="list_cell part2">名称</li>
+                     <li class="list_cell part2">优先级别</li>
+                     <li class="list_cell part2">策略限期</li>
+                     <li class="list_cell part2">策略生效</li>
+                     <li class="list_cell part2">所属项目</li>
+                     <li class="list_cell part2">所属机构</li>
+                     <li class="list_cell part2">所属区域</li>
+                     <li class="list_cell part2">操作员</li>
+                     <li class="list_cell part2">操作</li>
+                </div>
+-->
+	   	  </div>
+ 
+   	</div><!-- data_area -->
+   		 
+   
+<script>
+function test1(obj){ 
+	var lis = document.getElementsByTagName("li");
+	
+	for(i=0;i<lis.length;i++){ 
+	 var aObj = lis[i].firstChild;
+	 aObj.style.color = "#000000";
+	 aObj.style.backgroundColor = "#FFFFFF";
+	} 
+	var aObj = obj.firstChild;
+	aObj.style.color="#FFFFFF"; 
+	aObj.style.backgroundColor = "#000000";
+} 
+
+function addRow(div, rowValue)
+{
+	var pli = document.createElement("li");
+	pli.className='list_cell part2';
+	var ptxt = document.createTextNode(rowValue);
+	pli.appendChild(ptxt);
+	div.appendChild(pli);
+}
+
+function FullList(){ 
+	var listData = parent.jsCallVc("GetCameraList");
+	var obj = eval('(' + listData + ')'); 
+	//alert(obj.username);
+	
+		for(i=0;i<obj.camera.length;i++){ 
+			var pdiv = document.createElement("div"); 
+	  	pdiv.className='data_list_header_sub';
+		  
+		 	addRow(pdiv, obj.camera[i].no);
+		  addRow(pdiv, obj.camera[i].name);
+			addRow(pdiv, obj.camera[i].level);
+		 	addRow(pdiv, obj.camera[i].date);
+		  addRow(pdiv, obj.camera[i].valid);
+			addRow(pdiv, obj.camera[i].project);
+		 	addRow(pdiv, obj.camera[i].organ);
+		  addRow(pdiv, obj.camera[i].area);
+			addRow(pdiv, obj.camera[i].operator);
+			addRow(pdiv, obj.camera[i].opt);
+		  
+	  var testdiv = document.getElementById("data_list");
+	  testdiv.appendChild(pdiv);
+	} 
+
+//  for(j=0;j<10;j++){
+//  	AddStrategy();
+//  }
+}
+
+function AddStrategy(){ 
+  var pdiv = document.createElement("div"); 
+  pdiv.className='data_list_header_sub';
+
+	addRow(pdiv, 0);
+	addRow(pdiv, 1);
+	addRow(pdiv, 2);
+	addRow(pdiv, 3);
+
+	
+  
+
+	// for(i=0;i<10;i++){
+ // 	var pli = document.createElement("li");
+ // 	pli.className='list_cell part2';
+ // 	var ptxt = document.createTextNode(i);
+//  	pli.appendChild(ptxt);
+ // 	pdiv.appendChild(pli);
+  	
+  //	addRow(pdiv, 0);
+//  }
+  var testdiv = document.getElementById("data_list");
+  testdiv.appendChild(pdiv);
+}
+</script>
+ </body>
+</html>

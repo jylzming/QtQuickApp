@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://portal.facebac.com/mediaindex/index.do -->
+<html>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html {width: 100%;height: 100%;margin:0;font-family:"΢���ź�";}
+        #allmap{width:100%;height:500px;}
+        p{margin-left:5px; font-size:14px;}
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=sSelQoVi2L3KofLo1HOobonW"></script> 	
+ 	<title></title> 	
+ 	</head>
+ <body width="100%" style="background:#FFF" onLoad="" scroll="no">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <link rel="stylesheet" type="text/css" href="../CSS_files/config-manager.css" /> 
+  <div class="content_title" style="clear:both">监控中心</div>
+  <div id="content" class="content_rect" style="background:#888888; margin-top:0px">
+		  <div id="allmap" style="width:100%;height:100%;;cursor:hand; height:778px;">
+			<img src="home.jpg" style="width:100%;height:100%"/>
+		  </div>
+ 
+ </div><!-- data_area -->
+   		 
+   
+<script type="text/javascript">
+	
+	  var map, obj_cpp;
+	    
+    function mapInit() {
+		    map = new BMap.Map("allmap");    
+		    map.centerAndZoom(new BMap.Point(114.086505, 22.544186), 18);
+		    map.enableScrollWheelZoom();
+		    
+		    var b = new BMap.Bounds(new BMap.Point(72.656809, 3.763697),new BMap.Point(139.56564, 56.797522)); 
+		    try {    
+		        BMapLib.AreaRestriction.setBounds(map, b);
+		    } catch (e) {
+		        alert(e);
+		    }
+		
+		    map.addEventListener("click",function(e){
+		        var jing_du_value = e.point.lng ;
+		        var wei_du_value =  e.point.lat;
+		        //alert(e.point.lng + "," + e.point.lat);
+		        var jing_du = document.getElementById("jing_du");
+		        var wei_du = document.getElementById("wei_du");
+		        //alert(jing_du_value + "_" + wei_du_value);
+		    });
+		    
+				var mydiv=document.getElementById("allmap");
+				var mydiv_resize=function(){
+					  mydiv.style.width=document.body.clientWidth;
+					  mydiv.style.height=document.body.clientHeight;
+				}
+				mydiv_resize();
+				window.onresize=mydiv_resize; 
+    }
+		
+	    
+	  function SaveCppObject(obj) {
+    		obj_cpp = obj;
+    }
+    
+    function markerOnclick(){
+    	if (obj_cpp != null)  
+    	{
+    		 //alert("markerOnclick->objCPP");
+         obj_cpp.ShowMessageBox("你好，我是Javascript，你是谁？");  
+      }
+    }
+
+		function addMarker(x, y){  
+			 var myIcon = new BMap.Icon("images/led_light.png", new BMap.Size(59,42), { offset: new BMap.Size(10, 25)}); //自定义标注符号
+		   var marker1 = new BMap.Marker(new BMap.Point(x, y), {icon: myIcon});  // 创建标注
+			 map.addOverlay(marker1);
+		   marker1.addEventListener("click", markerOnclick);	    
+		   var center = new BMap.Point(x, y);
+		   map.panTo(center, {noAnimation : "no"});
+		   return 122.211;
+		} 
+		
+	
+////////////拖动区域限制//////////////////////////////
+  var BMapLib = window.BMapLib = BMapLib || {};
+  
+  (function() {
+  
+      var AreaRestriction = BMapLib.AreaRestriction = function(){}
+
+      var _isRestricted = false;
+      var _map = null;
+      var _bounds = null;
+
+       
+      AreaRestriction.setBounds = function(map, bounds){
+          if (!map || 
+              !bounds || 
+              !(bounds instanceof BMap.Bounds)) {
+                  throw "";
+                  return false;
+          }
+          
+          if (_isRestricted) {
+              this.clearBounds();
+          }
+          _map = map;
+          _bounds = bounds;
+  
+          _map.addEventListener("moveend", this._mapMoveendEvent);
+          _isRestricted = true;
+          return true;
+      };
+  
+
+      AreaRestriction._mapMoveendEvent = function(e) {
+      		var centerMv;
+      		var lngOffset=0;
+	        var latOffset=0;
+      		var curBounds = _map.getBounds();
+	        var curBoundsSW = curBounds.getSouthWest();
+	        var curBoundsNE = curBounds.getNorthEast();
+	        var _boundsSW   = _bounds.getSouthWest();
+	        var _boundsNE   = _bounds.getNorthEast();
+	          
+          if (_bounds.containsBounds(curBounds)) {
+          // 如果设定区域界面包含显示界面，就不做任何操作
+          	//alert("_bounds.containsBounds(curBounds)");
+          	return;
+          }
+          else if(curBounds.containsBounds(_bounds)){
+          // 如果显示界面包含设定区域界面，就将设定区域移动到中间位置
+          	centerMv = new BMap.Point(_boundsSW.lng + (_boundsNE.lng - _boundsSW.lng) / 2, _boundsSW.lat + (_boundsNE.lat - _boundsSW.lat) / 2);
+          	//alert("curBounds.containsBounds(_bounds)");
+          }
+          else{
+	          //alert("bounds out");  	
+	          var curCenter=_map.getCenter();
+	          centerMv = new BMap.Point(curCenter.lng, curCenter.lat);
+	          //alert(centerMv.lng+ ", " + centerMv.lat);        
+
+	                    
+	          //经度偏移	          
+	          var lngWdCur= curBoundsNE.lng - curBoundsSW.lng;
+	          var lngWdBd = _boundsNE.lng - _boundsSW.lng;
+	          if(lngWdCur > lngWdBd){
+	          		centerMv.lng = _boundsSW.lng + (_boundsNE.lng - _boundsSW.lng) / 2;
+	          		//alert("lng 1");
+	          }
+	          else if(curBoundsNE.lng >= _boundsNE.lng){
+	          	lngOffset = curBoundsNE.lng - _boundsNE.lng;
+	          	//alert("lng 2: ");
+	          }
+	          else if(curBoundsSW.lng < _boundsSW.lng){
+	          	lngOffset =  curBoundsSW.lng - _boundsSW.lng;
+	          	//alert("lng 3: curSW.lng=" + curBoundsSW.lng + "; bdSW.lng=" + _boundsSW.lng +"; offset="+ lngOffset);
+	          }
+	
+	          //维度偏移
+	          var latWdCur= curBoundsNE.lat - curBoundsSW.lat;
+	          var latWdBd = _boundsNE.lat - _boundsSW.lat;
+	          if(latWdCur >  latWdBd){
+	          		centerMv.lat = _boundsSW.lat + (_boundsNE.lat - _boundsSW.lat) / 2;
+	          		//alert("lat 1");
+	          }
+	          else if(curBoundsNE.lat >= _boundsNE.lat){
+	          	latOffset = curBoundsNE.lat - _boundsNE.lat;
+	          	//alert("lat 2: curNE.lat=" + curBoundsNE.lat + "; bdNE.lat=" + _boundsNE.lat +"; offset="+ latOffset);
+	          }
+	          else if(curBoundsSW.lat < _boundsSW.lat){
+	          	latOffset =  curBoundsSW.lat - _boundsSW.lat;
+	          	//alert("lat 3: curSW.lat=" + curBoundsSW.lat + "; bdSW=" + _boundsSW.lat);
+	          }
+	          
+	          //alert("after: "+ centerMv.lng + ", "+ centerMv.lat + ";curwd" + lngWdCur  + ";bdWd" + lngWdBd);
+        }
+        
+        var center = new BMap.Point( centerMv.lng - lngOffset, centerMv.lat - latOffset);
+        
+        setTimeout(function() {
+             _map.panTo(center, {noAnimation : "no"});
+         }, 1);
+     };
+ 
+
+     AreaRestriction.clearBounds = function(){
+         if (!_isRestricted) {
+             return;
+         }
+         _map.removeEventListener("moveend", this._mapMoveendEvent);
+         _isRestricted = false;
+     };
+ 
+ })();
+</script>
+ </body>
+</html>
