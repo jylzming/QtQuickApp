@@ -64,6 +64,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("lightImg click!");
                     lightRect.visible = true
@@ -83,6 +84,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("warningImg click!");
                 }
@@ -99,6 +101,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("motoImg click!");
                 }
@@ -115,6 +118,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("policeImg click!");
                 }
@@ -133,6 +137,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("dangerImg click!");
                 }
@@ -149,6 +154,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("wifiImg click!");
                 }
@@ -166,6 +172,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("carparkImg click!");
                 }
@@ -182,6 +189,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("floodImg click!");
                 }
@@ -199,6 +207,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("questionImg click!");
                 }
@@ -216,6 +225,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("cameraImg click!");
                 }
@@ -232,6 +242,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("dustImg click!");
                 }
@@ -248,6 +259,7 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     console.log("slideImg click!");
                 }

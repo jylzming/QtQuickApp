@@ -54,7 +54,8 @@ Rectangle{
             anchors.fill: parent;
             hoverEnabled: true;
             propagateComposedEvents: false
-            acceptedButtons: Qt.LeftButton;
+            acceptedButtons: Qt.LeftButton
+            cursorShape: Qt.PointingHandCursor
             onClicked: {
                 console.log("Logo click!");
 
@@ -83,7 +84,8 @@ Rectangle{
                 anchors.fill: parent;
                 hoverEnabled: true;
                 propagateComposedEvents: false
-                acceptedButtons: Qt.LeftButton;
+                acceptedButtons: Qt.LeftButton
+                cursorShape: Qt.PointingHandCursor
                 onClicked: {
                     console.log("LogoName click!");
 
@@ -104,7 +106,8 @@ Rectangle{
                 anchors.fill: parent;
                 hoverEnabled: true;
                 propagateComposedEvents: false
-                acceptedButtons: Qt.LeftButton;
+                acceptedButtons: Qt.LeftButton
+                cursorShape: Qt.PointingHandCursor
                 onClicked: {
                     console.log("LogoName click!");
 
@@ -130,7 +133,8 @@ Rectangle{
             anchors.fill: parent;
             hoverEnabled: true;
             propagateComposedEvents: false
-            acceptedButtons: Qt.LeftButton;
+            acceptedButtons: Qt.LeftButton
+            cursorShape: Qt.PointingHandCursor
             onClicked: {
                 console.log("userName click!");
 
@@ -151,7 +155,8 @@ Rectangle{
             anchors.fill: parent;
             hoverEnabled: true;
             propagateComposedEvents: false
-            acceptedButtons: Qt.LeftButton;
+            acceptedButtons: Qt.LeftButton
+            cursorShape: Qt.PointingHandCursor
             onClicked: {
                 console.log("SettingImg click!");
 
@@ -191,7 +196,8 @@ Rectangle{
                 anchors.fill: parent;
                 hoverEnabled: true;
                 propagateComposedEvents: false
-                acceptedButtons: Qt.LeftButton;
+                acceptedButtons: Qt.LeftButton
+                cursorShape: Qt.PointingHandCursor
                 onClicked: {
                     //console.log("minimiun click!");
                     if(myMainWindow == null)
@@ -223,6 +229,7 @@ Rectangle{
                 hoverEnabled: true;
                 acceptedButtons: Qt.LeftButton
                 propagateComposedEvents: false
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     //console.log("maximun click!");
                     if(myMainWindow == null)
@@ -255,6 +262,7 @@ Rectangle{
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true;
                 propagateComposedEvents: false
+                cursorShape: Qt.PointingHandCursor
                 onReleased: {
                     //console.log("close click!");
                     if(myMainWindow == null)

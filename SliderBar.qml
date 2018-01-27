@@ -25,6 +25,17 @@ Rectangle{
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: 10
+        opacity: messageArea.containsMouse? 0.5:1.0
+        MouseArea{
+            id: messageArea
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton;
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onReleased: {
+                console.log("messageImg click!");
+            }
+        }
     }
 
     Image {
