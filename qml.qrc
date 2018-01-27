@@ -64,5 +64,7 @@
         <file>ICON/btnMessage1.png</file>
         <file>ICON/btnMini1.png</file>
         <file>ICON/btnSetting1.png</file>
+        <file>components/WarningPage.qml</file>
+        <file>components/LightPage.qml</file>
     </qresource>
 </RCC>

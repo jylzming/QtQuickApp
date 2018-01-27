@@ -18,13 +18,9 @@ Rectangle{
         property point clickPos: "0,0"
         acceptedButtons: Qt.LeftButton //只处理鼠标左键
         onPressed: { //接收鼠标按下事件
-            console.log("titleBar Pressed!");
+            //console.log("titleBar Pressed!");
             clickPos  = Qt.point(mouse.x,mouse.y);
         }
-        onClicked: {
-            console.log("titleBar click!")
-        }
-
         onDoubleClicked: {
             console.log("titleBar Double click!")
             if(myMainWindow.visibility == Window.Windowed){
@@ -52,6 +48,18 @@ Rectangle{
         anchors.top: parent.top
         anchors.leftMargin: 20
         anchors.topMargin: 10
+        opacity: logoArea.containsMouse ? 0.5 : 1.0;
+        MouseArea{
+            id: logoArea;
+            anchors.fill: parent;
+            hoverEnabled: true;
+            propagateComposedEvents: false
+            acceptedButtons: Qt.LeftButton;
+            onClicked: {
+                console.log("Logo click!");
+
+            }
+        }
     }
     Column {
         id: titleText
@@ -60,6 +68,7 @@ Rectangle{
         anchors.top: image_logo.top
         anchors.bottom: image_logo.bottom
         anchors.leftMargin: 20
+
         Text {
             id: logoCNname
             text: qsTr("天眼预警联动")
@@ -67,6 +76,19 @@ Rectangle{
             font.pointSize: 14
             font.weight: Font.DemiBold
             color: "#FFFFFF"
+
+            opacity: cnNameArea.containsMouse ? 0.5 : 1.0;
+            MouseArea{
+                id: cnNameArea;
+                anchors.fill: parent;
+                hoverEnabled: true;
+                propagateComposedEvents: false
+                acceptedButtons: Qt.LeftButton;
+                onClicked: {
+                    console.log("LogoName click!");
+
+                }
+            }
         }
         Text {
             id: logoENname
@@ -75,7 +97,21 @@ Rectangle{
             font.pointSize: 14
             font.weight: Font.DemiBold
             color: "#EEEEEE"
+
+            opacity: enNameArea.containsMouse ? 0.5 : 1.0;
+            MouseArea{
+                id: enNameArea;
+                anchors.fill: parent;
+                hoverEnabled: true;
+                propagateComposedEvents: false
+                acceptedButtons: Qt.LeftButton;
+                onClicked: {
+                    console.log("LogoName click!");
+
+                }
+            }
         }
+
     }
 
     Text {
@@ -88,6 +124,18 @@ Rectangle{
         anchors.right: btnSet.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 30
+        opacity: userArea.containsMouse ? 0.5 : 1.0
+        MouseArea{
+            id: userArea;
+            anchors.fill: parent;
+            hoverEnabled: true;
+            propagateComposedEvents: false
+            acceptedButtons: Qt.LeftButton;
+            onClicked: {
+                console.log("userName click!");
+
+            }
+        }
     }
     Image {
         id: btnSet
@@ -97,6 +145,18 @@ Rectangle{
         anchors.right: separateRect.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 20
+        opacity: setArea.containsMouse ? 0.5 : 1.0
+        MouseArea{
+            id: setArea;
+            anchors.fill: parent;
+            hoverEnabled: true;
+            propagateComposedEvents: false
+            acceptedButtons: Qt.LeftButton;
+            onClicked: {
+                console.log("SettingImg click!");
+
+            }
+        }
     }
 
     //分隔条
@@ -130,9 +190,10 @@ Rectangle{
                 id: miniArea;
                 anchors.fill: parent;
                 hoverEnabled: true;
+                propagateComposedEvents: false
                 acceptedButtons: Qt.LeftButton;
                 onClicked: {
-                    console.log("minimiun click!");
+                    //console.log("minimiun click!");
                     if(myMainWindow == null)
                         return;
                     myMainWindow.visibility = Window.Minimized;
@@ -161,15 +222,19 @@ Rectangle{
                 anchors.fill: parent;
                 hoverEnabled: true;
                 acceptedButtons: Qt.LeftButton
-                propagateComposedEvents: true;
+                propagateComposedEvents: false
                 onReleased: {
-                    console.log("maximun click!");
+                    //console.log("maximun click!");
                     if(myMainWindow == null)
                         return;
-                    if(myMainWindow.visibility == Window.FullScreen)
-                    {myMainWindow.showNormal(); console.log("Clicked, to fullscreen")}
+                    if(myMainWindow.visibility == Window.FullScreen) {
+                        myMainWindow.showNormal();
+                        //console.log("Clicked, to fullscreen")
+                    }
                     else{
-                        myMainWindow.visibility = Window.FullScreen; console.log("Clicked, to normal window")}
+                        myMainWindow.visibility = Window.FullScreen;
+                        //console.log("Clicked, to normal window")
+                    }
                 }
             }
 
@@ -189,9 +254,9 @@ Rectangle{
                 anchors.fill: parent;
                 acceptedButtons: Qt.LeftButton;
                 hoverEnabled: true;
-                propagateComposedEvents: true
+                propagateComposedEvents: false
                 onReleased: {
-                    console.log("close click!");
+                    //console.log("close click!");
                     if(myMainWindow == null)
                         return;
                     myMainWindow.close();

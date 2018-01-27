@@ -92,6 +92,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_qml.cpp
 debug/qrc_qml.cpp: qml.qrc \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/bin/rcc.exe \
+		SliderBar.qml \
+		TitleBar.qml \
+		MainWidget.qml \
 		main.qml \
 		center/home_25.jpg \
 		center/home_19.jpg \
@@ -118,6 +121,7 @@ debug/qrc_qml.cpp: qml.qrc \
 		center/home_23.jpg \
 		center/home_39.jpg \
 		ICON/calendar.png \
+		ICON/help.png \
 		ICON/car.png \
 		ICON/setting.png \
 		ICON/dust.png \
@@ -125,18 +129,30 @@ debug/qrc_qml.cpp: qml.qrc \
 		ICON/video.png \
 		ICON/bell.png \
 		ICON/wifi3.png \
+		ICON/btnMini1.png \
+		ICON/ray.png \
+		ICON/photo.png \
 		ICON/lightbulb34.png \
 		ICON/drop4.png \
 		ICON/message.png \
 		ICON/light79.png \
+		ICON/envelope.png \
+		ICON/conversation.png \
+		ICON/information.png \
+		ICON/tinoya.png \
+		ICON/btnMessage1.png \
 		ICON/factory-plant.png \
 		ICON/police.png \
 		ICON/warning_shield.png \
 		ICON/biohazard.png \
+		ICON/btnSetting1.png \
 		ICON/wifi.png \
+		ICON/zoom.png \
+		ICON/btnClose1.png \
 		ICON/power.png \
 		ICON/halloween.png \
 		ICON/road_worker.png \
+		ICON/more.png \
 		ICON/home.png \
 		ICON/light.png
 	C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\rcc.exe -name qml qml.qrc -o debug\qrc_qml.cpp
